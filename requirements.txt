@@ -1,0 +1,6 @@
+wheel
+flask
+yfinance
+TA-Lib
+pandas
+python-dotenv

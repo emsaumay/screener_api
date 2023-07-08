@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { font-family: arial; margin: 20px; }
+        td { padding: 3px; }
+        .bullish { background: green; color: white; }
+        .bearish { background: red; color: white; }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screener</title>
+</head>
+<body>
+
+    <h1>Screener</h1>
+
+    <form>
+        <select name="pattern">
+            {% for pattern in patterns %}
+            <option value="{{pattern}}"> {{patterns[pattern]}} </option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="scan" />
+    </form>
+
+    <table>
+        <tr>
+            <th>symbol</th>
+            <th>company</th>
+            <th>signal</th>
+        </tr>
+        {% for stock in stocks %}
+            {% if stocks[stock][pattern] %}
+            <tr>
+                <td>
+                    {{ stock }}
+                </td>
+                <td>
+                    {{ stocks[stock]['company'] }}
+                </td>
+                <td class="{{ stocks[stock][pattern] }}">
+                    {{ stocks[stock][pattern]}}
+                </td>
+            {% endif %}
+        {% endfor %}
+    </table>
+    
+</body>
+</html>
